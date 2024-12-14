@@ -1,0 +1,48 @@
+CLASE PARQUEADERO
+
+import java.util.ArrayList;
+
+class Parqueadero {
+    private ArrayList<Vehiculo> vehiculos;
+
+    public Parqueadero() {
+        this.vehiculos = new ArrayList<>();
+    }
+
+    public void registrarVehiculo(String placa, String tipo) {
+        Vehiculo vehiculo = new Vehiculo(placa, tipo);
+        vehiculos.add(vehiculo);
+        System.out.println("Vehículo registrado: " + vehiculo);
+    }
+
+    public void actualizarVehiculo(int puestoVehiculo, String nuevaPlaca, String nuevoTipo) {
+        Vehiculo vehiculo = buscarVehiculo(puestoVehiculo);
+        if (vehiculo != null) {
+            vehiculo.setPlaca(nuevaPlaca);
+            vehiculo.setTipo(nuevoTipo);
+            System.out.println("Vehículo actualizado: " + vehiculo);
+        } else {
+            System.out.println("Vehículo no encontrado.");
+        }
+    }
+
+    public void mostrarVehiculos() {
+        if (vehiculos.isEmpty()) {
+            System.out.println("No hay vehículos en el parqueadero.");
+        } else {
+            System.out.println("\n--- Vehículos en el parqueadero ---");
+            for (Vehiculo vehiculo : vehiculos) {
+                System.out.println(vehiculo);
+            }
+        }
+    }
+
+    private Vehiculo buscarVehiculo(int puestoVehiculo) {
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo.getPuesto() == puestoVehiculo) {
+                return vehiculo;
+            }
+        }
+        return null;
+    }
+}

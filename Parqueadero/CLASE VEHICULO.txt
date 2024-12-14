@@ -1,0 +1,42 @@
+CLASE VEHICULO
+
+import java.util.ArrayList; 
+import java.util.Scanner; 
+
+class Vehiculo {
+    private static int contadorPuesto = 1;
+    private final int puesto;
+    private String placa;
+    private String tipo; 
+
+    public Vehiculo(String placa, String tipo) {
+        this.puesto = contadorPuesto++;
+        this.placa = placa;
+        this.tipo = tipo;
+    }
+
+    public int getPuesto() {
+        return puesto;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Puesto: " + puesto + ", Placa: " + placa + ", Tipo: " + tipo;
+    }
+}

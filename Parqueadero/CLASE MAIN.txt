@@ -1,0 +1,69 @@
+CLASE MAIN 
+
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class Main {
+    public static void main(String[] args) {
+        Parqueadero parqueadero = new Parqueadero();
+        Scanner scanner = new Scanner(System.in);
+        int opcion = -1;
+
+        do {
+            System.out.println("\n--- Menú del Parqueadero ---");
+            System.out.println("1. Registrar vehículo");
+            System.out.println("2. Actualizar vehículo");
+            System.out.println("3. Consulta vehículos");
+            System.out.println("4. Salir");
+            System.out.print("Ingrese una opción: ");
+
+            try {
+                opcion = scanner.nextInt();
+                scanner.nextLine(); 
+            } catch (InputMismatchException e) {
+                System.out.println("\nOpción no válida, debe ser un número.");
+                scanner.nextLine(); 
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("\nIngrese la placa del vehículo: ");
+                    String placa = scanner.nextLine();
+                    System.out.print("Ingrese el tipo de vehículo (Carro, Moto, Camión, etc.): ");
+                    String tipo = scanner.nextLine();
+                    parqueadero.registrarVehiculo(placa, tipo);
+                    break;
+
+                case 2:
+                    System.out.print("\nIngrese el ID del vehículo a actualizar: ");
+                    try {
+                        int puestoVehiculo = scanner.nextInt();
+                        scanner.nextLine(); 
+                        System.out.print("Ingrese la nueva placa del vehículo: ");
+                        String nuevaPlaca = scanner.nextLine();
+                        System.out.print("Ingrese el nuevo tipo de vehículo: ");
+                        String nuevoTipo = scanner.nextLine();
+                        parqueadero.actualizarVehiculo(puestoVehiculo, nuevaPlaca, nuevoTipo);
+                    } catch (InputMismatchException e) {
+                        System.out.println("\nError: El ID debe ser un número.");
+                        scanner.nextLine(); 
+                    }
+                    break;
+
+                case 3:
+                    parqueadero.mostrarVehiculos();
+                    break;
+
+                case 4:
+                    System.out.println("\nCerrando programa...");
+                    break;
+
+                default:
+                    System.out.println("\nOpción no válida, solo permitido los valores (1,2,3,4)");
+            }
+        } while (opcion != 4);
+
+        scanner.close();
+    }
+}
